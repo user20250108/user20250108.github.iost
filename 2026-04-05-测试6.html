@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>md001</title>
+    
+    <!-- KaTeX CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+    
+    <!-- KaTeX JS -->
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: '$$', right: '$$', display: true},
+                    {left: '$', right: '$', display: false},
+                    {left: '\\[', right: '\\]', display: true},
+                    {left: '\\(', right: '\\)', display: false}
+                ],
+                throwOnError: false
+            });
+        });
+    </script>
+    
+    <style>
+        body {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            font-family: "Segoe UI", "Microsoft YaHei", "微软雅黑", sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        h1 { color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px; }
+        h2 { color: #34495e; margin-top: 30px; }
+        h3 { color: #7f8c8d; }
+        h4 { color: #2980b9; margin-top: 20px; margin-bottom: 10px; }
+        
+        /* 彩色区块样式 */
+        .color-block {
+            border-radius: 4px;
+            margin: 15px 0;
+        }
+        .color-block--DarkGoldenrod {
+            background: #fff8dc;
+            padding: 15px;
+            border-left: 4px solid #b8860b;
+        }
+        .color-block--NavyBlue {
+            background: #f0f8ff;
+            padding: 15px;
+            border-left: 4px solid #000080;
+        }
+        .color-block--FireBrick {
+            background: #fff0f0;
+            padding: 15px;
+            border-left: 4px solid #b22222;
+        }
+        .color-block--DarkGreen {
+            background: #f0fff0;
+            padding: 15px;
+            border-left: 4px solid #006400;
+        }
+        
+        ol {
+            padding-left: 20px;
+        }
+        li {
+            margin: 5px 0;
+        }
+        
+        .katex-display {
+            overflow-x: auto;
+            overflow-y: hidden;
+            padding: 10px 0;
+        }
+        
+        a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+
+## 第一节 2024.11.12
+视频地址：*[田野-初等数论-2024.11.12](https://www.bilibili.com/video/av113475166671448)*
+#### **命题1**
+<div class="color-block color-block--NavyBlue">
+奇数$k$如果可以表示为两个正整数的平方和，那么$k \equiv 1 \mod 4$。
+</div>
+##### **证明**
+<div class="color-block color-block--FireBrick">
+假设正整数$x$和$y$满足
+$$k = x^2 + y^2$$
+由于$k$是奇数，那么$x^2$和$y^2$一个是奇数，一个是偶数。这表明$x$和$y$一个是奇数，一个是偶数。不失一般性，此时假设$x$是奇数，$y$是偶数，即
+$$x = 2m - 1, \quad y = 2n, \quad m \in \mathbb Z_+, \quad n \in \mathbb Z_+$$
+此时
+$$k = \left(2m - 1\right)^2 + \left(2n\right)^2 = 4m\left(m - 1\right) + 4n^2 + 1 = 1 \mod 4$$
+命题得证。
+</div>
+<br>
+#### **推论2**
+<div class="color-block color-block--NavyBlue">
+奇数的平方模$8$余$1$。
+</div>
+##### **证明**
+<div class="color-block color-block--FireBrick">
+假设奇数表示为$2m - 1$，其中$m$是正整数。那么
+$$\left(2m - 1\right)^2 = 4m\left(m - 1\right) + 1$$
+由于$m\left(m - 1\right)$是偶数，所以推论得证。
+</div>
+<br>
+#### **定义1**
+<div class="color-block color-block--DarkGoldenrod">
+称方程$\alpha^2 + \beta^2 = \gamma^2$的正整数解$\left(\alpha,\beta,\gamma\right)$为勾股数。
+</div>
+<br>
+#### **命题3**
+<div class="color-block color-block--NavyBlue">
+勾股数$\left(\alpha,\beta,\gamma\right)$乘以正整数$d$后还是勾股数$\left(d\alpha,d\beta,d\gamma\right)$。
+</div>
+<br>
+#### **命题4**
+<div class="color-block color-block--NavyBlue">
+如果勾股数$\left(\alpha,\beta,\gamma\right)$中的两个不互素，那么它们的公因子也是第三个数的因子。
+</div>
+##### **证明**
+<div class="color-block color-block--FireBrick">
+假设正整数$d > 1$满足$d \mid \alpha,d \mid \beta$，那么假设$\alpha = da,\beta = db$，其中$a$和$b$ 都是正整数，此时$\gamma^2 = d^2\left(a^2 + b^2\right)$，于是$d \mid \gamma$。其余两种情况类似，于是结论得证。
+</div>
+<br>
+#### **定义2**
+<div class="color-block color-block--DarkGoldenrod">
+称方程$\alpha^2 + \beta^2 = \gamma^2$两两互素的正整数解$\left(\alpha,\beta,\gamma\right)$ 为本原勾股数。
+</div>
+<br>
+#### **命题5**
+<div class="color-block color-block--NavyBlue">
+本原勾股数$\left(\alpha,\beta,\gamma\right)$中的$\gamma$是奇数。
+</div>
+##### **证明**
+<div class="color-block color-block--FireBrick">
+由于本原勾股数两两互素，所以三个数中必有奇数存在。根据奇偶数的加法，三个数中有且仅有两个奇数。如果这两个奇数是$\alpha$和$\beta$，那么根据奇数平方模$4$余$1$得到$\gamma^2 \equiv 2 \mod 4$，矛盾。于是这两个奇数中必有一个是$\gamma$。
+</div>
+<br>
+#### **定理6**
+<div class="color-block color-block--NavyBlue">
+以下三个集合是等价的：
+<ol>
+<li> 本原勾股数$\left(\alpha,\beta,\gamma\right)$，其中$\alpha$为偶数。</li>
+<li> 三元组$\left(2ab,a^2 - b^2,a^2 + b^2\right)$，其中$a > b$为互素的正整数，且$2 \nmid a + b$。</li>
+<li> 三元组$\left(\dfrac{c^2 - d^2}{2},cd,\dfrac{c^2 + d^2}{2}\right)$，其中$c > d$为互素的正整数，且$2 \nmid cd$。</li>
+</ol>
+</div>
+##### **证明**
+<div class="color-block color-block--FireBrick">
+假设本原勾股数$\left(\alpha,\beta,\gamma\right)$中$\alpha$为偶数，此时$\beta$和$\gamma$是奇数。注意到
+$$\left(\frac{\alpha}{2}\right)^2 = \frac{\gamma + \beta}{2}\frac{\gamma - \beta}{2}$$
+又因为
+$$\gcd\left(\frac{\gamma + \beta}{2},\frac{\gamma - \beta}{2}\right) = d > 1 \implies d \mid \frac{\gamma + \beta}{2},d \mid \frac{\gamma - \beta}{2} \implies d \mid \gamma,d \mid \beta \implies \gcd\left(\gamma,\beta\right) = d$$
+与假设矛盾，于是
+$$\gcd\left(\dfrac{\gamma + \beta}{2},\dfrac{\gamma - \beta}{2}\right) = 1$$
+根据算术基本定理，假设
+$$\left(\frac{\alpha}{2}\right)^2 = p_1^{2r_1}p_2^{2r_2}\cdots p_s^{2r_s}, \quad r_1,r_2,\cdots,r_s \in \mathbb Z_+$$
+其中$p_1,p_2,\cdots,p_s$为素数，那么只有两个完全平方数才能互素且乘积为$\left(\alpha / 2\right)^2$，假设它们是$a^2$和$b^2$，其中$a > b$为互素的正整数，此时
+$$\gamma = a^2 + b^2, \quad \beta = a^2 - b^2 \implies \alpha = 2ab$$
+到这里说明了所有的本原勾股数都可以写成三元组的形式
+$$\left(\alpha,\beta,\gamma\right) \implies \left(2ab,a^2 - b^2,a^2 + b^2\right), \quad a > b, \quad \gcd\left(a,b\right) = 1$$
+现在研究箭头的反向是否成立，即三元组两两互素。此时假设
+$$\gcd\left(a^2 - b^2,a^2 + b^2\right) = d \implies d \mid a^2 - b^2,d \mid a^2 + b^2 \implies d \mid 2a^2,d \mid 2b^2 \implies d \mid 2$$
+无法推出$d = 1$，其中最后一步使用了$\gcd\left(a,b\right) = 1$的条件。如果取$d = 2$就表明此时的三元组会同时是偶数，所以加入条件$2 \nmid a + b$，这意味着$2 \nmid a - b,2 \nmid a^2 - b^2,2 \nmid a^2 + b^2$，此时就有$\gcd\left(a^2 - b^2,a^2 + b^2\right) = 1$。进一步验证如下
+$$\gcd\left(2ab,a^2 + b^2\right) = d \implies d \mid \left(a + b\right)^2,d \mid \left(a - b\right)^2$$
+根据算术基本定理，假设$d = p_1^{r_1}p_2^{r_2}\cdots p_s^{r_s},r_1,r_2,\cdots,r_s \in \mathbb Z_+$，其中$p_1,p_2,\cdots,p_s$为素数，那么存在$f = p_1p_2\cdots p_s$使得$f \mid a + b,f \mid a - b$，这给出$f \mid 2a,f \mid 2b \implies f \mid 2$。结合$2 \nmid a^2 + b^2$ 就能够得到$f = 1,d = 1$。此时得到
+$$\gcd\left(a^2 - b^2,a^2 + b^2\right) = 1, \quad \gcd\left(2ab,a^2 + b^2\right) = 1 \implies \gcd\left(2ab,a^2 - b^2\right) = 1$$
+说明下面的等价式是成立的
+$$\left(\alpha,\beta,\gamma\right) \iff \left(2ab,a^2 - b^2,a^2 + b^2\right), \quad a > b, \quad \gcd\left(a,b\right) = 1, \quad 2 \nmid a + b$$
+即定理中前两个集合等价。
+<br>
+<br>
+通过等式
+$$\beta^2 = \left(\gamma + \alpha\right)\left(\gamma - \alpha\right)$$
+注意到$\gamma + \alpha$和$\gamma - \alpha$都为奇数，于是根据
+$$\gcd\left(\gamma + \alpha,\gamma - \alpha\right) = g \implies g \mid \gamma + \alpha,g \mid \gamma - \alpha \implies g \mid 2\gamma,g \mid 2\alpha \implies g \mid 2$$
+得到$g = 1$，即$\gamma + \alpha$和$\gamma - \alpha$是互素的。同样地，只有两个完全平方数才能互素且乘积为$\beta^2$，假设它们是$c^2$和$d^2$，其中$c > d$为互素的正整数，此时
+$$\gamma = \frac{c^2 + d^2}{2}, \quad \alpha = \frac{c^2 - d^2}{2} \implies \beta = cd$$
+到这里说明了所有的本原勾股数都可以写成三元组的形式
+$$\left(\alpha,\beta,\gamma\right) \implies \left(\frac{c^2 - d^2}{2},cd,\frac{c^2 + d^2}{2}\right), \quad c > d, \quad \gcd\left(c,d\right) = 1, \quad 2 \nmid cd$$
+最后一个条件来自$c^2 = \gamma + \alpha$和$d^2 = \gamma - \alpha$都为奇数。现在研究箭头的反向是否成立，即三元组两两互素。假设
+$$\gcd\left(cd,\frac{c^2 + d^2}{2}\right) = g \implies g \mid cd,g \mid \frac{c^2 + d^2}{2} \implies g \mid \frac{\left(c + d\right)^2}{2},g \mid \frac{\left(c - d\right)^2}{2}$$
+由于$2 \nmid cd$，所以$2 \nmid g$，这表明
+$$g \mid \frac{\left(c + d\right)^2}{4},g \mid \frac{\left(c - d\right)^2}{4}$$
+假设$g = p_1^{r_1}p_2^{r_2}\cdots p_s^{r_s},r_1,r_2,\cdots,r_s \in \mathbb Z_+$，其中$p_1,p_2,\cdots,p_s$ 为素数，那么存在$h = p_1p_2\cdots p_s$使得
+$$h \mid \frac{c + d}{2},h \mid \frac{c - d}{2} \implies h \mid c,h \mid d \implies h = 1$$
+从而得到$g = 1$。同样可以得到
+$$\gcd\left(\frac{c^2 - d^2}{2},\frac{c^2 + d^2}{2}\right) = g \implies g \mid \frac{c^2 - d^2}{2},g \mid \frac{c^2 + d^2}{2} \implies g \mid c^2,g \mid d^2 \implies g = 1$$
+说明下面的等价式是成立的
+$$\left(\alpha,\beta,\gamma\right) \iff \left(\frac{c^2 - d^2}{2},cd,\frac{c^2 + d^2}{2}\right), \quad c > d, \quad \gcd\left(c,d\right) = 1, \quad 2 \nmid cd$$
+定理证完。
+</div>
+<br>
+#### **命题7**
+<div class="color-block color-block--NavyBlue">
+本原勾股数$\left(\alpha,\beta,\gamma\right)$与曲线$x^2 + y^2 = 1$在第一象限的有理点一一对应。
+</div>
+##### **证明**
+<div class="color-block color-block--FireBrick">
+通过变换$x = \alpha / \gamma,y = \beta / \gamma$容易得到
+$$\alpha^2 + \beta^2 = \gamma^2, \quad \alpha,\beta,\gamma \in \mathbb Z \implies x^2 + y^2 = 1, \quad x,y \in \mathbb Q$$
+现在研究箭头的反向是否成立。考虑有理点$\left(p_1 / q_1,p_2 / q_2\right)$满足曲线方程，此时$\gcd\left(p_1,q_1\right) = 1,\gcd\left(p_2,q_2\right) = 1$，根据曲线方程
+$$\left(\frac{p_1}{q_1}\right)^2 + \left(\frac{p_2}{q_2}\right)^2 = 1 \implies p_1^2q_2^2 + p_2^2q_1^2 = q_1^2q_2^2$$
+能够得到
+$$p_1^2q_2^2 = q_1^2\left(q_2^2 - p_2^2\right) \implies q_1 \mid p_1q_2 \implies q_1 \mid q_2$$
+同理得到$q_2 \mid q_1$，于是$q_1 = q_2$，通过变换$\alpha = p_1,\beta = p_2,\gamma = q_1$即可变为本原勾股数，命题得证。
+</div>
+##### *注1*
+<div class="color-block color-block--DarkGreen">
+相交直线系数的有理性可以得到二次曲线上的有理点。考虑直线$y = m\left(x + 1\right)$与曲线$x^2 + y^2 = 1$ 的交点
+$$\left(x,y\right) = \left(-1,0\right), \quad \left(x,y\right) = \left(\frac{1 - m^2}{1 + m^2},\frac{2m}{1 + m^2}\right)$$
+当$0 < m < 1$时，第二个交点在第一象限内。假设第二个交点为有理点，有
+$$\left(\frac{1 - m^2}{1 + m^2},\frac{2m}{1 + m^2}\right) = \left(\frac \alpha\gamma,\frac \beta\gamma\right), \quad m = \left(1 - \frac{1 - m^2}{1 + m^2}\right) / \frac{2m}{1 + m^2} = \frac{\gamma - \alpha}{\beta}$$
+于是$x,y \in \mathbb Q \implies m \in \mathbb Q$。反过来，如果$m$是有理数，假设$m = p / q$，其中$\gcd\left(p,q\right) = 1$，那么
+$$x = \frac{1 - m^2}{1 + m^2} = \frac{q^2 - p^2}{q^2 + p^2}, \quad y = \frac{2m}{1 + m^2} = \frac{2pq}{q^2 + p^2}$$
+此时$x,y \in \mathbb Q \iff m \in \mathbb Q$。现在查看$x$和$y$的表达式是否是有理数的最简表示，根据
+$$\gcd\left(q^2 - p^2,q^2 + p^2\right) = d \implies d \mid q^2 - p^2,d \mid q^2 + p^2 \implies d \mid 2q^2,d \mid 2p^2 \implies d \mid 2$$
+此时$d$不一定为$1$。如果$p$和$q$是一个奇数一个偶数，即$2 \nmid p + q$，那么有$2 \nmid p - q,2 \nmid p^2 - q^2$，才能得到$d = 1$。如果$p$和$q$是两个奇数，即$2 \nmid pq$，那么有$2 \mid p + q,2 \mid p^2 - q^2,2 \mid p^2 + q^2$，得到$d = 2$。于是
+$$m = \frac{p}{q} \implies
+\begin{cases}
+\alpha = q^2 - p^2,\beta = 2pq,\gamma = q^2 + p^2, \quad 2 \nmid p + q \\
+\alpha = \dfrac{q^2 - p^2}{2},\beta = pq,\gamma = \dfrac{q^2 + p^2}{2}, \quad 2 \nmid pq
+\end{cases}$$
+对于$2 \nmid p + q$的情况，注意到$2 \mid 2pq$，所以此时的$\beta$是偶数，对于$2 \nmid pq$的情况，由于$2 \mid p + q,2 \mid p - q$，此时可以得到$4 \mid p^2 - q^2$，于是$\alpha$是偶数。
+</div>
+<br>
+#### **定义3**
+<div class="color-block color-block--DarkGoldenrod">
+如果存在面积为正整数$n$的三边有理的直角三角形，称$n$为同余数。
+</div>
+<br>
+#### **命题8**
+<div class="color-block color-block--NavyBlue">[Fermat,1640]
+$1$不是同余数。
+</div>
+##### **证明**
+<div class="color-block color-block--FireBrick">
+假设这样的三角形存在，设三边边长都乘以$k$倍后为正整数$\alpha,\beta,\gamma$，此时满足
+$$\alpha^2 + \beta^2 = \gamma^2, \quad \frac 12\alpha\beta = k^2$$
+假设$k$足够小使得$\gcd\left(\alpha,\beta,\gamma\right) = 1$，那么可以得到它们两两互素，此时三元组$\left(\alpha,\beta,\gamma\right)$是本原勾股数。假设$a > b$是两个互素的正整数，并且$2 \nmid a + b$，此时本原勾股数可表示为$\left(2ab,a^2 - b^2,a^2 + b^2\right)$。它们的面积满足
+$$ab\left(a - b\right)\left(a + b\right) = k^2$$
+由于$a,b$互素，所以上述四个正整数$a,b,a - b,a + b$两两互素，于是它们都是互素的完全平方数。现在假设
+$$a = r^2, \quad b = s^2, \quad a - b = v^2, \quad a + b = u^2$$
+构造三角形的三边分别为$\left(u - v\right) / 2,\left(u + v\right) / 2,r$，根据
+$$\left(\frac{u - v}{2}\right)^2 + \left(\frac{u + v}{2}\right)^2 = r^2$$
+可以知道此时三角形是直角三角形，$r$是斜边。并根据
+$$\gcd\left(\frac{u - v}{2},\frac{u + v}{2}\right) = d \implies d \mid \frac{u - v}{2},d \mid \frac{u + v}{2} \implies d \mid u,d \mid v \implies d = 1 \\
+\gcd\left(r^2,u^2\right) = 1,\gcd\left(r^2,v^2\right) = 1 \implies \gcd\left(r,u\right) = 1,\gcd\left(r,v\right) = 1 \implies \gcd\left(r,\frac{u + v}{2}\right) = 1$$
+得到此时三角形三边为本原勾股数。它的面积为
+$$\frac 12\frac{u - v}{2}\frac{u + v}{2} = \left(\frac s2\right)^2$$
+由于$2 \nmid a + b$，于是$u$和$v$都是奇数，此时$2 \mid u + v,2 \mid u - v,4 \mid u^2 - v^2,2 \mid s^2$，于是$s$ 是偶数。显然新构造的直角三角形的面积也是完全平方数，并且根据$a > b$注意到
+$$k^2 = ab\left(a - b\right)\left(a + b\right) = r^2s^2\left(r^2 - s^2\right)\left(r^2 + s^2\right) \geqslant r^2s^2\left(r^2 + s^2\right) > 2s^6 > \left(\frac s2\right)^2$$
+于是可以无穷次构造出面积减小的三角形，但完全平方数最小是$1$，所以矛盾，于是这样的三角形不存在。
+</div>
+##### *注2*
+<div class="color-block color-block--DarkGreen">
+当考虑面积为$n$的直角三角形时，可以按照与$n = 1$时类似的方法考虑等式
+$$ab\left(a - b\right)\left(a + b\right) = nk^2$$
+假设$n \mid b$，于是考虑如下假设
+$$a = r^2, \quad b = ns^2, \quad a - b = v^2, \quad a + b = u^2$$
+构造直角三角形，它的三边为本原勾股数$\left(u - v\right) / 2,\left(u + v\right) / 2,r$。它的面积为
+$$\frac 12\frac{u - v}{2}\frac{u + v}{2} = n\left(\frac s2\right)^2$$
+现在将新的三角形三边用三元组$\left(2a_1 b_1,a_1^2 - b_1^2,a_1^2 + b_1^2\right)$表示，进而得到
+$$a = r^2 = \left(a_1^2 + b_1^2\right)^2, \quad b = ns^2 = 2\frac{u - v}{2}\frac{u + v}{2} = 4a_1b_1\left(a_1^2 - b_1^2\right)$$
+如果存在直角三角形使得$n$为同余数，那么可以解出对应的$a_1,b_1$，构造出另一个面积为$n$的三边有理的直角三角形。
+</div>
+##### *注3*
+<div class="color-block color-block--DarkGreen">
+如果对上述等式变形可以得到
+$$\frac ab\left(\frac ab - 1\right)\left(\frac ab + 1\right) = n\left(\frac{k}{b^2}\right)^2$$
+这表明$n$是同余数时，三边有理的直角三角形会对应曲线$ny^2 = x\left(x - 1\right)\left(x + 1\right)$ 上的有理点。如果直线与曲线有三个交点，考虑直线已经经过曲线上的两个有理点$\left(x_1,y_1\right),\left(x_2,y_2\right)$，那么它与曲线的交点方程为
+$$x^3 - x - n\left[\frac{y_2 - y_1}{x_2 - x_1}\left(x - x_1\right) + y_1\right]^2 = 0$$
+考虑等价的形式
+$$\left(x - x_1\right)\left(x - x_2\right)\left(x - x_3\right) = 0$$
+其中$\left(x_3,y_3\right)$是第三个交点。比较关于$x$的常数项得到
+$$-x_1x_2x_3 = -n\left(y_1 - \frac{y_2 - y_1}{x_2 - x_1}x_1\right)^2 \implies x_3 = n\frac{x_1}{x_2}\left(\frac{y_1}{x_1} - \frac{y_2 - y_1}{x_2 - x_1}\right)^2$$
+同样的方式可以得到
+$$y_3 = \frac{1}{y_2}\left(\frac{y_2 - y_1}{x_2 - x_1}\right)^2\left(\frac{y_2 - y_1}{x_2 - x_1}\frac{x_1}{y_1} - 1\right) - \frac{y_1^2}{y_2}\left(\frac{y_2 - y_1}{x_2 - x_1}\frac{x_1}{y_1} - 1\right)^3$$
+这说明第三个交点也是有理点。现在考虑$\left(x_1,y_1\right)$和$\left(x_2,y_2\right)$趋于同一个点$\left(x_0,y_0\right)$，此时两个交点变为切点，斜率为
+$$\lim_{x_2 \rightarrow x_1 = x_0} \frac{y_2 - y_1}{x_2 - x_1} = \frac{3x_0^2 - 1}{2ny_0}$$
+代入得到第三个交点的位置
+$$x_3 = n\left(\frac{y_0}{x_0} - \frac{3x_0^2 - 1}{2ny_0}\right)^2, \quad y_3 = \frac{1}{y_0}\left(\frac{3x_0^2 - 1}{2ny_0}\right)^2\left(\frac{3x_0^2 - 1}{2ny_0}\frac{x_0}{y_0} - 1\right) - y_0\left(\frac{3x_0^2 - 1}{2ny_0}\frac{x_0}{y_0} - 1\right)^3$$
+<br>
+<br>
+现在考虑初始点
+$$\left(x_0,y_0\right) = \left(\frac{a_1}{b_1},\frac{s}{2b_1^2}\right)$$
+代入得到第三个交点
+$$x_3 = n\left(\frac{s}{2a_1b_1} - \frac{3a_1^2 - b_1^2}{ns}\right)^2 = \frac{ns^2}{4a_1^2b_1^2} + \frac{\left(3a_1^2 - b_1^2\right)^2}{ns^2} - \frac{3a_1^2 - b_1^2}{a_1b_1} = \frac{\left(a_1^2 + b_1^2\right)^2}{4a_1b_1\left(a_1^2 - b_1^2\right)} = \frac{a}{b} \\
+y_3 = \frac{2b_1^2}{s}\left(\frac{3a_1^2 - b_1^2}{ns}\right)^2\left(\frac{3a_1^2 - b_1^2}{ns}\frac{2a_1b_1}{s} - 1\right) - \frac{s}{2b_1^2}\left(\frac{3a_1^2 - b_1^2}{ns}\frac{2a_1b_1}{s} - 1\right)^3 = \frac{s\left(a_1^2 + b_1^2\right)\left(a_1^4 - 6a_1^2b_1^2 + b_1^4\right)}{16a_1^2b_1^2\left(a_1^2 - b_1^2\right)^2}$$
+之前的等式可以变形为
+$$k^2 = as^2\left(a - b\right)\left(a + b\right) = s^2\left(a_1^6 - 5a_1^4b_1^2 - 5a_1^2b_1^4 + b_1^6\right)^2 =\left[s\left(a_1^2 + b_1^2\right)\left(a_1^4 - 6a_1^2b_1^2 + b_1^4\right)\right]^2$$
+这表明$y_3 = k / b^2$，与之前构造新直角三角形的结果一致。
+</div>
+
+## 第二节 2024.11.19
+视频地址：*[田野-初等数论-2024.11.19](https://www.bilibili.com/video/av113508872099841)*
+#### **命题9**
+<div class="color-block color-block--NavyBlue">
+存在整数$x,y$使得对任意的正整数$a,b$有$xa + yb = \gcd\left(a,b\right)$。
+</div>
+##### **证明**
+<div class="color-block color-block--FireBrick">
+不妨设$a > b$，可以通过辗转相除给出
+$$a = q_1b + r_1, \quad b = q_2r_1 + r_2, \quad r_1 = q_3r_2 + r_3, \quad r_2 = q_4r_3 + r_4, \quad \cdots, \quad r_{n - 2} = q_nr_{n - 1} + r_n, \quad r_{n - 1} = q_{n + 1}r_n$$
+其中$0 < r_n < r_{n - 1} < \cdots < r_4 < r_3 < r_2 < r_1 < b < a$。此时$r_n \mid r_{n - 1},r_n \mid r_{n - 2},\cdots,r_n \mid b,r_n \mid a$，即$r_n$是$a,b$的公因子。另外，如果存在正整数$d$满足$d \mid a,d \mid b$，那么通过上面的等式可以给出$d \mid r_1,d \mid r_2, \cdots, d \mid r_n$，这表明$r_n$是正整数$a,b$的最大公因子，即$r_n = \gcd\left(a,b\right)$。由于$q_1,q_2,\cdots,q_{n + 1}$是正整数，并且
+$$r_1 = a - q_1b, \quad r_2 = b - q_2r_1 = b - q_2\left(a - q_1b\right), \quad \cdots$$
+表明最终$r_1,r_2,\cdots,r_n$都可以写成$xa + yb$的形式，其中$x,y$是整数。
+</div>
+<br>
+#### **命题10**
+<div class="color-block color-block--NavyBlue">
+对正整数$a,b$，有素数$p$满足$p \mid ab$，则$p \mid a$或$p \mid b$。
+</div>
+##### **证明**
+<div class="color-block color-block--FireBrick">
+如果$p \nmid a$，那么$\gcd\left(a,p\right) = 1$，存在整数$x,y$使得$xa + yp = 1$，即$xab + ypb = b$，于是$p \mid b$。
+</div>
+<br>
+#### **定理11**
+<div class="color-block color-block--NavyBlue">
+大于$1$的正整数可以唯一分解为有限个素数的乘积。
+</div>
+##### **证明**
+<div class="color-block color-block--FireBrick">
+对于正整数$n$，如果$n$是素数，那么定理成立，如果$n$不是素数，那么存在$1 < n_1,n_2 < n$使得$n = n_1n_2$，将$n_1,n_2$继续这一过程最终得到分解式$n = p_1^{r_1}p_2^{r_2}\cdots p_s^{r_s}$，其中$p_1 < p_2 < \cdots < p_s$都是素数。考虑两个素因子分解
+$$n = p_1^{r_1}p_2^{r_2}\cdots p_s^{r_s} = q_1^{t_1}q_2^{t_2}\cdots q_k^{t_k}$$
+这里$q_1 < q_2 < \cdots < q_k$也是素数。可以得到$p_1 \mid q_1^{t_1}q_2^{t_2}\cdots q_k^{t_k}$，于是存在$q_i$ 使得$p_1 \mid q_i$，即$p_1 = q_i$。同样的方式，通过关系$q_1 \mid p_1^{r_1}p_2^{r_2}\cdots p_s^{r_s}$可以得到存在$p_j$使得$q_1 = p_j$，即$p_1 = q_i \geqslant q_1 = p_j$，由于这里的等号只在$i = 1$时才能取到，所以$i = j = 1,p_1 = q_1$。将$n / p_1$继续上述分析，可以得到$r_1 = t_1$，进而得到$p_j = q_j,r_j = t_j,j = 1,2,\cdots,s$并且可以给出$s = k$，表明素因子分解是唯一的。
+</div>
+<br>
+#### **命题12**
+<div class="color-block color-block--NavyBlue">
+对正整数$N$，有整数$a_1,a_2$满足$a_1 \equiv a_2 \mod N$，整数$b_1,b_2$满足$b_1 \equiv b_2 \mod N$，那么
+$$a_1 \pm b_1 \equiv a_2 \pm b_2 \mod N, \quad a_1b_1 \equiv a_2b_2 \mod N$$
+</div>
+##### **证明**
+<div class="color-block color-block--FireBrick">
+因为$N \mid a_1 - a_2,N \mid b_1 - b_2$，所以通过
+$$\left(a_1 \pm b_1\right) - \left(a_2 \pm b_2\right) = \left(a_1 - a_2\right) \pm \left(b_1 - b_2\right), \quad a_1b_1 - a_2b_2 = a_1\left(b_1 - b_2\right) + b_2\left(a_1 - a_2\right)$$
+可以得到$N \mid \left(a_1 \pm b_1\right) - \left(a_2 \pm b_2\right),N \mid a_1b_1 - a_2b_2$，命题得证。
+</div>
+<br>
+#### **定理13**
+<div class="color-block color-block--NavyBlue">
+若正整数$a$互素于素数$p$，有$a^{p - 1} \equiv 1 \mod p$。
+</div>
+##### **证明**
+<div class="color-block color-block--FireBrick">
+任取正整数$i,j$满足$0 < j < i < p$，那么$\gcd\left(p,i - j\right) = 1,\gcd\left(p,\left(i - j\right)a\right) = 1$，可以得到$ia$与$ja$模$p$不等。考察乘积$1a \cdot 2a \cdots \left(p - 1\right)a$，由于它们模$p$余数两两不等，于是它们关于$p$的余数遍历模$p$的简化剩余系，即
+$$1a \cdot 2a \cdots \left(p - 1\right)a \equiv 1 \cdot 2 \cdots \left(p - 1\right) \mod p$$
+这表明$p \mid \left[1 \cdot 2 \cdots \left(p - 1\right) \cdot \left(a^{p - 1} - 1\right)\right]$，根据$\gcd\left(p,1 \cdot 2 \cdots \left(p - 1\right)\right) = 1$得到$p \mid a^{p - 1} - 1$，定理得证。
+</div>
+<br>
+#### **命题14**
+<div class="color-block color-block--NavyBlue">
+对素数$p$，有整系数多项式$f\left(x\right) = a_0x^m + a_1x^{m - 1} + \cdots + a_m$满足$p \nmid a_0$，方程$f\left(x\right) \equiv 0 \mod p$最多有$m$个模$p$不同的根。
+</div>
+##### **证明**
+<div class="color-block color-block--FireBrick">
+当$m = 1$时，$f\left(x\right) = a_0x + a_1,p \nmid a_0$，假如方程有两个解$x_1,x_2$，那么
+$$a_0x_1 + a_1 \equiv 0 \mod p, \quad a_0x_2 + a_1 \equiv 0 \mod p$$
+这样给出$a_0\left(x_1 - x_2\right) \equiv 0 \mod p$，通过$p \nmid a_0$得到$p \mid x_1 - x_2$，于是命题在$m = 1$时成立。
+<br>
+<br>
+当$m = 2$时，$f\left(x\right) = a_0x^2 + a_1x + a_2,p \nmid a_0$，考虑方程模$p$不同的解为$x_1,x_2,\cdots,x_r$，定义整系数多项式
+$$g\left(x\right) = f\left(x + x_1\right) = a_0x^2 + b_1\left(x_1\right)x + f\left(x_1\right)$$
+方程$g\left(x\right) \equiv 0 \mod p$模$p$不同的解为$0,x_2 - x_1,\cdots,x_r - x_1$，由于$f\left(x_1\right) \equiv 0 \mod p$，方程简化为
+$$\left[a_0x + b_1\left(x_1\right)\right]x \equiv 0 \mod p$$
+由于$x_1,x_2,\cdots,x_r$模$p$不同，所以$p \nmid x_j - x_1,j = 2,\cdots,r$。定义
+$$g_1\left(x\right) = a_0x + b_1\left(x_1\right)$$
+此时$g_1\left(x\right) \equiv 0 \mod p$模$p$不同的解为$x_2 - x_1,\cdots,x_r - x_1$。注意到$g_1\left(x\right)$是整系数一次多项式，所以$r \leqslant 2$。
+<br>
+<br>
+类似地，当$m$更大时，通过归纳法可以证明。
+</div>
+<br>
+#### **引理15**
+<div class="color-block color-block--NavyBlue">
+对素数$p$，小于$p - 1$的正整数$m$不能使所有小于$p$的正整数$x$都满足$x^m \equiv 1 \mod p$。
+</div>
+##### **证明**
+<div class="color-block color-block--FireBrick">
+前面的命题可以证明这个引理。另一种方法是考虑多项式$f\left(x\right) = x^m - 1$，定义算子$\Delta$使得
+$$\Delta f\left(x\right) = f\left(x + 1\right) - f\left(x\right)$$
+迭代使用得到
+$$\Delta^2 f\left(x\right) = f\left(x + 2\right) - f\left(x\right), \quad \Delta^3 f\left(x\right) = f\left(x + 3\right) - f\left(x + 2\right) - f\left(x + 1\right) + f\left(x\right), \quad \cdots$$
+最终$\Delta^m f\left(x\right)$是$f\left(x + m\right),f\left(x + m - 1\right),\cdots,f\left(x\right)$的整系数线性组合。代入$x = 1$可以得到
+$$\left.f\left(x + m\right)\right\vert_{x = 1} = f\left(m + 1\right) = \left(m + 1\right)^m - 1, \quad \left.f\left(x + m - 1\right)\right\vert_{x = 1} = m^m - 1, \quad \cdots, \quad \left.f\left(x\right)\right\vert_{x = 1} = 1^m - 1$$
+如果所有小于$p$的正整数$x$都满足$x^m \equiv 1 \mod p$，那么$f\left(m + 1\right),f\left(m\right),\cdots,f\left(1\right)$都会模$p$余$0$，即
+$$x^m \equiv 1 \mod p, \quad x = 1,2,\cdots,p - 1 \implies \Delta^m f\left(1\right) \equiv 0 \mod p$$
+接下来考察上述的逆否命题。
+<br>
+<br>
+直接计算出$\Delta^m f\left(x\right)$的值。考虑
+$$\Delta \left(a_0x + a_1\right) = a, \quad \Delta^2 \left(a_0x^2 + a_1x + a_2\right) = \Delta \left[a_0\left(2x + 1\right) + a_1\right] = 2a_0, \quad \cdots$$
+对于关于$x$的$m$阶多项式$g\left(x\right)$，$\Delta g\left(x\right)$是关于$x$的$m - 1$阶多项式，$\Delta^2 g\left(x\right)$是关于$x$的$m - 2$阶多项式，以此类推，$\Delta^m g\left(x\right)$是一个常数，于是$\Delta^m f\left(x\right) = m!$。但是由于$m < p - 1$且$p$是素数，所以$p \nmid \Delta^m f\left(1\right) = m!$，由此得到所有小于$p$的正整数$x$不会都满足$x^m \equiv 1 \mod p$。
+</div>
+<br>
+#### **定理16**
+<div class="color-block color-block--NavyBlue">
+素数$p$满足$\left(p - 1\right)! \equiv -1 \mod p$。
+</div>
+##### **证明**
+<div class="color-block color-block--FireBrick">
+考察方程$ab \equiv 1 \mod p$，对于它的解$\left(a_0,b_0\right)$，可以知道$\left(a_0 + mp,b_0 + np\right)$也是方程的解，其中$m,n$是整数。所以在模$p$的简化剩余系中讨论即可。如果$a \equiv b \mod p$，那么$p \mid a^2 - 1$，可以得到$a \equiv \pm 1 \mod p$。显然，这个的逆否命题给出$a \not\equiv \pm 1 \mod p \implies a \not\equiv b \mod p$。将模$p$的简化剩余系全部乘起来，则除了模$p$余$\pm 1$的元素，其他都两两匹配变为模$p$余$1$的值，最终得到$\left(p - 1\right)! \equiv -1 \mod p$。
+</div>
+<br>
+#### **定理17**
+<div class="color-block color-block--NavyBlue">
+素数$p$是两个正整数的平方和当且仅当$p = 2$或$p \equiv 1 \mod 4$。
+</div>
+##### **证明**
+<div class="color-block color-block--FireBrick">
+素数$p$分为两类，一类是$p = 2$，一类是$p$为奇数。根据之前的分析，只需证明如果奇素数$p \equiv 1 \mod 4$，那么它可以写成两个正整数的平方和即可。现在将$p$记为$4k + 1$，其中$k$是某个正整数。对于互素于$p$的正整数$x$，有
+$$\left(x^{2k} - 1\right)\left(x^{2k} + 1\right) = x^{4k} - 1 \equiv 0 \mod p$$
+根据之前的命题，总可以找到$x$使得$x^{2k} \not\equiv 1 \mod p$，此时$p \mid x^{2k} + 1,x^{2k} \equiv -1 \mod p$。
+<br>
+<br>
+一个类似的分析是这样的。注意到
+$$\left[1 \cdot 2 \cdots \left(2k\right)\right]\left[\left(p - 2k\right) \cdot \left(p - 2k + 1\right) \cdots \left(p - 1\right)\right] = \left(p - 1\right)! \equiv -1 \mod p$$
+这意味着
+$$\left[1 \cdot 2 \cdots \left(2k\right)\right]\left[\left(-2k\right) \cdot \left(-2k + 1\right) \cdots \left(-1\right)\right] = \left(-1\right)^{2k} \left[\left(2k\right)!\right]^2 = \left[\left(2k\right)!\right]^2 \equiv -1 \mod p$$
+这些都表明对这样的素数$p$，总可以找到$X^2 \equiv -1 \mod p$的整数解。
+<br>
+<br>
+由于$\left(X + mp\right)^2 \equiv X^2 \mod p$，所以在模$p$的简化剩余系中可以找到$X^2 \equiv -1 \mod p$的解$x$，其中$m$是整数。此时令$y = 1$，就能得到$x^2 + y^2 = Mp,M \in \mathbb Z_+$。由于$x \leqslant p - 1,y > 0$，可以得到$1 \leqslant M < p$。如果$M \geqslant 2$，根据
+$$\left(x^2 + y^2\right)\left(u^2 + v^2\right) = \left(xu + yv\right)^2 + \left(xv - yu\right)^2$$
+如果取$u \equiv x \mod M,v \equiv y \mod M$，那么$xu + yv \equiv x^2 + y^2 \equiv 0 \mod M,xv - yu \equiv xy - yx \equiv 0 \mod M$，再加上关系$u^2 + v^2 \equiv 0 \mod M$就可以将上式变为
+$$\frac{u^2 + v^2}{M}p = \frac{x^2 + y^2}{M}\frac{u^2 + v^2}{M} = \left(\frac{xu + yv}{M}\right)^2 + \left(\frac{xv - yu}{M}\right)^2, \quad \frac{u^2 + v^2}{M},\frac{xu + yv}{M},\frac{xv - yu}{M} \in \mathbb Z$$
+我们总可以在模$M$的完全剩余系中找到$u,v$的值，允许模$M$的完全剩余系包含负数以使得$-M / 2 < u,v \leqslant M / 2$，此时定义$M_1$满足
+$$M_1 = \frac{u^2 + v^2}{M} \leqslant \frac M 2 \leqslant M - 1$$
+接下来需要排除上述等式中零的存在，根据$u = v = 0 \implies M \mid x,M \mid y \implies M \mid p$的逆否命题得到$u^2 + v^2 > 0$，由此得到$M_1 \geqslant 1$。如果$xu + yv$或$xv - yu$等于零，那么等式左边$M_1p$就会等于一个平方数，但是$M_1 < p$，矛盾。综上，我们给出下降的方式
+$$\left(x,y,M\right) \xrightarrow{M \geqslant 2} \left(\left\lvert \frac{xu + yv}{M} \right\rvert,\left\lvert \frac{xv - yu}{M} \right\rvert,M_1\right)$$
+当$M = 1$时，如果还用下降法就会得到$u = v = 0$，不能给出更小的$M_1$。至此，定理得证。
+</div>
+
+## 第三节 2024.11.26
+视频地址：*[田野-初等数论-2024.11.26](https://www.bilibili.com/video/av113553314943312)*
+#### **命题18**
+<div class="color-block color-block--NavyBlue">
+整数$a$与素数$p$互素，方程$ab \equiv 1 \mod p$有解且在模$p$意义下唯一。
+</div>
+##### **证明**
+<div class="color-block color-block--FireBrick">
+这算是对之前那个$\left(p - 1\right)! \equiv -1 \mod p$命题证明的一个补充。首先至少$a^{p - 2}$是方程的解，存在性得证。假设有两个解$b_1,b_2$，那么$b_1 \equiv b_1ab_2 \equiv b_2 \mod p$，唯一性得证。
+</div>
+##### *注4*
+<div class="color-block color-block--DarkGreen">
+再补一个证明。考虑$1a,2a,\cdots,\left(p - 1\right)a$中的$ia$和$ja$，其中$1 \leqslant j < i \leqslant p - 1$。由于$i - j \not\equiv 0 \mod p$，于是得到$\left(i - j\right)a \not\equiv 0 \mod p,ia \not\equiv ja \mod p$，说明它们两两模$p$不等，所以遍历模$p$简化剩余系。模$p$简化剩余系中有$1$，所以只要$ja \equiv 1 \mod p$，那么$j$就是方程的解。
+</div>
+<br>
+#### **定义4**
+<div class="color-block color-block--DarkGoldenrod">
+对与素数$p$互素的整数$a$，记方程$ab \equiv 1 \mod p$的解$b$为$a^{-1}$，它在模$p$意义下唯一。
+</div>
+<br>
+#### **定理19**
+<div class="color-block color-block--NavyBlue">
+存在与素数$p$互素的整数$a$使得集合$\left\{1,a,a^2,\cdots,a^{p - 2}\right\}$是模$p$简化剩余系。
+</div>
+##### **证明**
+<div class="color-block color-block--FireBrick">
+考虑$p - 1$的素因子分解
+$$p - 1 = q_1^{m_1}q_2^{m_2}\cdots q_r^{m_r}$$
+假设$1 \leqslant i \leqslant r$，方程$X^{q_i^{m_i}} \equiv 1 \mod p$必有解因为至少$X$可以是$b^{q_1^{m_1}q_2^{m_2}\cdots q_{i - 1}^{m_{i - 1}}q_{i + 1}^{m_{i + 1}}\cdots q_r^{m_r}}$，其中$\gcd\left(p,b\right) = 1$。接下来，考虑上述方程的解是否满足$X^{q_i^{m_i - 1}} \equiv 1 \mod p$，直接代入上述的一个解到方程左侧得到
+$$\left(b^{q_1^{m_1}q_2^{m_2}\cdots q_{i - 1}^{m_{i - 1}}q_{i + 1}^{m_{i + 1}}\cdots q_r^{m_r}}\right)^{q_i^{m_i - 1}} = b^{\frac{p - 1}{q_i}}$$
+现在得到以下真命题：如果方程$X^{q_i^{m_i}} \equiv 1 \mod p$的所有解满足$X^{q_i^{m_i - 1}} \equiv 1 \mod p$，那么任意与$p$互素的整数$b$都满足$b^{\frac{p - 1}{q_i}} \equiv 1 \mod p$。 根据之前的引理，由于$\left(p - 1\right) / q_i < p - 1$，所以$b$不会都满足$b^{\frac{p - 1}{q_i}} \equiv 1 \mod p$。由上述命题的逆否命题得到，一定有方程$X^{q_i^{m_i}} \equiv 1 \mod p$的解不满足$X^{q_i^{m_i - 1}} \equiv 1 \mod p$，这样的解记为$a_i$。
+<br>
+<br>
+现在考虑$a = a_1a_2\cdots a_r$，如果集合$\left\{1,a,a^2,\cdots,a^{p - 2}\right\}$中有两个元素模$p$同余，比如$a^i \equiv a^j \mod p$，这里可以假设$i > j$，那么$1 \leqslant i - j \leqslant p - 2$。如果$p \mid a_i$，那么$a_i^{q_i^{m_i}} \equiv 0 \mod p$，所以根据逆否命题得到$p \nmid a_i$，进而$p \nmid a$。通过$a^j\left(a^{i - j} - 1\right) \equiv 0 \mod p$ 以及$p \nmid a$得到$a^{i - j} \equiv 1 \mod p$。注意到$a^{p - 1} \equiv 1 \mod p$，定义$d = \gcd\left(i - j,p - 1\right)$，存在整数$\alpha,\beta$使得$d = \alpha\left(i - j\right) + \beta\left(p - 1\right)$，那么
+$$a^d = \left(a^{i - j}\right)^\alpha \cdot \left(a^{p - 1}\right)^\beta \equiv 1 \mod p$$
+由于$d \mid p - 1$，所以$d$的素因子分解具有形式$q_1^{n_1}q_2^{n_2}\cdots q_r^{n_r}$，其中$0 \leqslant n_i \leqslant m_i,1 \leqslant i \leqslant r$，并且在$1 \leqslant i \leqslant r$中至少有一个$i$满足$n_i < m_i$。注意到
+$$a^{d\cdot\prod_{j \neq i}q_j^{m_j - n_j}} = \left(a_1a_2\cdots a_r\right)^{q_i^{n_i}\cdot\prod_{j \neq i}q_j^{m_j}} \equiv a_i^{q_i^{n_i}\cdot\prod_{j \neq i}q_j^{m_j}} \equiv 1 \mod p, \quad n_i \leqslant m_i - 1$$
+这里用到了$a_j^{q_j^{m_j}} \equiv 1 \mod p,1 \leqslant j \leqslant r$和$a^d \equiv 1 \mod p$。由于$q_i$和$\prod_{j \neq i}q_j^{m_j}$互素，存在整数$\gamma,\delta$使得
+$$\gamma q_i + \delta\prod_{j \neq i}q_j^{m_j} = 1 \implies \gamma q_i^{m_i} + \delta q_i^{m_i - 1 - n_i}\cdot q_i^{n_i}\cdot\prod_{j \neq i}q_j^{m_j} = q_i^{m_i - 1} \implies a_i^{q_i^{m_i - 1}} \equiv 1 \mod p$$
+这与$a_i$不满足$X^{q_i^{m_i - 1}} \equiv 1 \mod p$矛盾，于是集合$\left\{1,a,a^2,\cdots,a^{p - 2}\right\}$中的元素模$p$两两不同余，这个集合是模$p$的简化剩余系，定理得证。
+</div>
+
+## 第四节 2024.12.03
+视频地址：*[田野-初等数论-2024.12.03](https://www.bilibili.com/video/av113588328995449)*
+#### **定义5**
+<div class="color-block color-block--DarkGoldenrod">
+整数$a$与素数$p$互素，如果$d$是满足$a^d \equiv 1 \mod p$的最小正整数，则称$d$为$a$关于$p$的阶。
+</div>
+<br>
+#### **命题20**
+<div class="color-block color-block--NavyBlue">
+若$\gcd\left(a,p\right) = 1$，则$a$的阶整除$p - 1$。
+</div>
+##### **证明**
+<div class="color-block color-block--FireBrick">
+由$a^{p - 1} \equiv 1 \mod p$知道$a$的阶一定存在。假设$d$是$a$关于$p$的阶，即$a^d \equiv 1 \mod p$，而$\gcd\left(d,p - 1\right)$可表示为$d$与$p - 1$的整系数线性组合，那么$a^{\gcd\left(d,p - 1\right)} \equiv 1 \mod p$。由$\gcd\left(d,p - 1\right) \mid d$得到$d = \gcd\left(d,p - 1\right)$，进而得到$d \mid p - 1$。
+</div>
+<br>
+#### **命题21**
+<div class="color-block color-block--NavyBlue">
+对素数$p$，若$p - 1 = q^m$，其中$q$是素数，$m$是整数。那么存在整数$a$使得$a$的阶为$p - 1$。
+</div>
+##### **证明**
+<div class="color-block color-block--FireBrick">
+由以前的分析，一定存在方程$X^{q^m} \equiv 1 \mod p$的解不满足$X^{q^{m - 1}} \equiv 1 \mod p$，记这样的解为$a$。如果存在小于$m$的正整数$n$使得$a$的阶为$q^n$，那么$q^n \mid q^m$。但通过$n \leqslant m - 1$将得到$a^{q^{m - 1}} = a^{q^n\cdot q^{m - 1 - n}} \equiv 1 \mod p$，矛盾，于是此时$a$的阶为$q^m = p - 1$。
+</div>
+<br>
+#### **引理22**
+<div class="color-block color-block--NavyBlue">
+对素数$p$，整数$a,b$的阶为$m,n$，若$\gcd\left(m,n\right) = 1$，那么$ab$的阶为$mn$。
+</div>
+##### **证明**
+<div class="color-block color-block--FireBrick">
+根据$\left(ab\right)^{mn} \equiv 1 \mod p$知道$ab$的阶整除$mn$，假设$ab$的阶为$m_1n_1$，其中$m_1 \mid m,n_1 \mid n$。通过
+$$\left(ab\right)^{m_1n} \equiv a^{m_1n} \equiv 1 \mod p, \quad \left(ab\right)^{mn_1} \equiv b^{mn_1} \equiv 1 \mod p$$
+得到$m \mid m_1n,n \mid mn_1$，利用$\gcd\left(m,n\right) = 1$得到$m \mid m_1,n \mid n_1$，所以$m_1 = m,n_1 = n$。
+</div>
+<br>
+#### **定理23**
+<div class="color-block color-block--NavyBlue">
+对素数$p$，存在整数$a$使得$a$的阶为$p - 1$。
+</div>
+##### **证明**
+<div class="color-block color-block--FireBrick">
+这与之前的定理等价。对素因子分解$p - 1 = q_1^{m_1}q_2^{m_2}\cdots q_r^{m_r}$，存在整数$a_i$ 满足方程$X^{q_i^{m_i}} \equiv 1 \mod p$，但不满足方程$X^{q_i^{m_i - 1}} \equiv 1 \mod p$，它的阶为$q_i^{m_i}$。由于$a_1,a_2,\cdots,a_r$的阶两两互素，所以$a = a_1a_2\cdots a_r$的阶为$p - 1$。
+</div>
+<br>
+#### **定理24**
+<div class="color-block color-block--NavyBlue">
+对素数$p$，整数$b$与$p$互素，考虑方程
+$$x^m \equiv b \mod p$$
+其中$m$是正整数。令$d = \gcd\left(m,p - 1\right)$，有如下结论：
+<ol>
+<li> 方程有$d$个模$p$不同的解或方程无解。</li>
+<li> 方程有解当且仅当方程$x^d \equiv b \mod p$有解。</li>
+<li> 方程有解当且仅当$b^{\frac{p - 1}{d}} \equiv 1 \mod p$，其中满足的$b$在模$p$意义下有$\left(p - 1\right) / d$个。</li>
+</ol>
+</div>
+##### **证明**
+<div class="color-block color-block--FireBrick">
+存在整数$\alpha,\beta$使得$d = \alpha m + \beta\left(p - 1\right)$。当方程$x^d \equiv b \mod p$有解时，由于$p \nmid b$，所以$p \nmid x^d,p \nmid x$，有
+$$x^d = \left(x^\alpha\right)^m \cdot \left(x^{p - 1}\right)^\beta \equiv \left(x^\alpha\right)^m \mod p$$
+表明$x^\alpha$是方程$x^m \equiv b \mod p$的解。必然存在阶为$p - 1$的整数，记为$a$，模$p$的简化剩余系在模$p$意义下都可表示为$a^k$，其中$k$是整数。可以假设$x \equiv a^u \mod p,b \equiv a^v \mod p$。此时得到
+$$a^v\left(a^{um - v} - 1\right) \equiv 0 \mod p \implies a^{um - v} \equiv 1 \mod p \implies p - 1 \mid um - v \implies d \mid um - v \implies d \mid v$$
+如果$x^m \equiv b \mod p$有解，那么存在整数$a,\delta$使得$b \equiv a^{\delta d} \mod p$，其中$a$与$p$互素，此时$a^\delta$是$x^d \equiv b \mod p$的解。至此，定理的第二条得证。
+<br>
+<br>
+如果方程$x^d \equiv b \mod p$有解，根据
+$$x^{p - 1} \equiv \left(x^d\right)^{\frac{p - 1}{d}} \equiv b^{\frac{p - 1}{d}} \mod p$$
+能够得到$b^{\frac{p - 1}{d}} \equiv 1 \mod p$。如果$b^{\frac{p - 1}{d}} \equiv 1 \mod p$，那么继续之前的假设$b \equiv a^v \mod p$，得到$a^{v\frac{p - 1}{d}} \equiv 1 \mod p$，进而得到$d \mid v$，方程$x^d \equiv b \mod p$有解。定理第三条的前半部分得证。
+<br>
+<br>
+如果方程$x^m \equiv b \mod p$存在两个解$x_1,x_2$，它们满足$x_1^m \equiv x_2^m \mod p,\left(x_1^{-1}x_2\right)^m \equiv 1 \mod p$，这里的逆是前面定义过的数论倒数。于是模$p$意义下，方程$x^m \equiv 1 \mod p$解的数目就决定了方程$x^m \equiv b \mod p$解的数目。等效的，可以考虑方程$x^d \equiv 1 \mod p$解的数目，将$x$替换为$a^u$，这要求$p - 1 \mid ud,\frac{p - 1}{d} \mid u$。由于$a$的阶是$p - 1$，模$p$不同的解对应的$u$有$d$个。定理的第一条得证。
+<br>
+<br>
+同样的道理，方程$x^{\frac{p - 1}{d}} \equiv 1 \mod p$的解有$\frac{p - 1}{d}$个，定理第三条的后半部分得证。
+</div>
+
+## 第五节 2024.12.10
+视频地址：*[田野-初等数论-2024.12.10](https://www.bilibili.com/video/av113627856113842)*
+<br>
+<br>
+
+<br>
+<br>
+
+<br>
+<br>
+
+<br>
+<br>
+
+<br>
+<br>
+
+
+</body>
+</html>
